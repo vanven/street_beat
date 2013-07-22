@@ -8,7 +8,25 @@
     <!-- <script src="jquery-2.0.3.min.js"></script> -->
 </head>
 <body>
-	<div id="map" style="width: 100%; height: 600px;"></div>
+	<div id="map" style="width: 100%; height: 600px;">
+    <div class="box">
+        <form method="get" action="/search" id="search_form" class="large-6 columns">
+          <div class="label">Search</div>
+          <input autocomplete="off" id="find_desc" maxlength="64" name="find_desc" placeholder="Search" tabindex="1" value="">
+
+          <div class="label">Where</div>
+          <input id="" maxlength="64" name="find_loc" placeholder="address, neighborhood, city, state or zip" tabindex="2" value="Santa Monica, CA">
+          <input type="hidden" name="ns" value="1">
+
+          <button id="search_submit" type="submit" value="submit" class="tiny button radius">SEARCH</button>
+        </form>
+
+        <button id="create" class="large-2 large-offset columns" type="submit" value="submit">Sign Up</button>
+        <button id="login" class="large-2 columns" type="submit" value="submit">Log In</button>
+    </div>
+  </div>
+
+
 
     <script type="text/javascript" src="http://api.evdb.com/js/api">
 
@@ -18,7 +36,7 @@
 		<script>
 			var latitude;
 			var longitude;
-		
+
       	   if(navigator.geolocation)
       	   {
       	      // timeout at 60000 milliseconds (60 seconds)
@@ -51,7 +69,7 @@
 
                within: 40,
 
-               units: 'mi', 
+               units: 'mi',
 
                date: "2013061000-2015062000",
 
@@ -64,7 +82,7 @@
             EVDB.API.call("/events/search", oArgs, function(oData) {
 
                console.log(oData);
-               
+
 
                var i;
                for (i=0; i<oData.events.event.length; i++){
@@ -79,7 +97,7 @@
                   .openOn(map);
                 }
                 eventMarker.on('click', setMarker);
-                
+
                }
 
              });
@@ -121,7 +139,7 @@
 
               var latlng = new L.LatLng(50.5, 30.5);
               console.log(map.getBounds().contains(latlng));
-  		  	  
+
 
   	      	} /* End showLocation*/
 
