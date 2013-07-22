@@ -16,117 +16,126 @@
 
 
 		<script>
-			var latitude;
-			var longitude;
-		
-      	   if(navigator.geolocation)
-      	   {
-      	      // timeout at 60000 milliseconds (60 seconds)
-      	      var options = {timeout:60000};
-      	      navigator.geolocation.getCurrentPosition(setMap, errorHandler, options);
-      	   }
-  	       else
-  	       {
-      	         alert("Sorry, browser does not support geolocation!");
-      	   }
+						var latitude;
+						var longitude;
+						var today = new Date().toString();
+						console.log(today);
+					
+						
+			      	   if(navigator.geolocation)
+			      	   {
+			      	      // timeout at 60000 milliseconds (60 seconds)
+			      	      var options = {timeout:60000};
+			      	      navigator.geolocation.getCurrentPosition(setMap, errorHandler, options);
+			      	   }
+			  	       else
+			  	       {
+			      	         alert("Sorry, browser does not support geolocation!");
+			      	   }
 
-	      	function errorHandler(err) {
-	      	  if(err.code == 1) {
-	      	    console.log(err);
-	      	    alert("Error: Access is denied!");
-	      	  }
-	      	  else if( err.code == 2) {
-	      	    alert("Error: Position is unavailable!");
-	      	  }
-	      	} /* end errorHandler */
+				      	function errorHandler(err) {
+				      	  if(err.code == 1) {
+				      	    console.log(err);
+				      	    alert("Error: Access is denied!");
+				      	  }
+				      	  else if( err.code == 2) {
+				      	    alert("Error: Position is unavailable!");
+				      	  }
+				      	} /* end errorHandler */
 
-  	    	function setMap(position) {
+			  	    	function setMap(position) {
 
-            /* CALL TO EVENTFULL API*/
-            var oArgs = {
+		  		      	latitude = position.coords.latitude;
+						longitude = position.coords.longitude;
 
-               app_key: "4KMXVbWrVkKnh2rv",
+			            /* CALL TO EVENTFULL API*/
+			            var oArgs = {
 
-               where: "34.06581, -118.36644",
+			               app_key: "4KMXVbWrVkKnh2rv",
 
-               within: 40,
+			               where: latitude + ', ' + longitude,
 
-               units: 'mi', 
+			               category: 'music',
 
-               date: "2013061000-2015062000",
+			               within: 30,
 
-               page_size: 5,
+			               units: 'mi', 
 
-               sort_order: "distance",
+			               date: "Today",
 
-            };
+			               page_size: 20,
 
-            EVDB.API.call("/events/search", oArgs, function(oData) {
+			               sort_order: "popularity",
 
-               console.log(oData);
-               
+			            };
 
-               var i;
-               for (i=0; i<oData.events.event.length; i++){
-                var latPop = oData.events.event[i].latitude;
-                var lngPop = oData.events.event[i].longitude;
-                var title = oData.events.event[i].title;
-                console.log(title);
-                var eventMarker = L.marker([latPop, lngPop]).addTo(map);
-                var descripPopUp = L.popup().setContent(title);
-                function setMarker(e){
-                  descripPopUp
-                  .openOn(map);
-                }
-                eventMarker.on('click', setMarker);
-                
-               }
+			            console.log(oArgs);
 
-             });
+			            EVDB.API.call("/events/search", oArgs, function(oData) {
 
+			               console.log(oData);
+			               
 
-              /* CREATING MAP WITH LEAFLET.JS */
-  		      	latitude = position.coords.latitude;
-				      longitude = position.coords.longitude;
+			               var i;
+			               for (i=0; i<oData.events.event.length; i++){
+			                var latPop = oData.events.event[i].latitude;
+			                var lngPop = oData.events.event[i].longitude;
+			                var title = oData.events.event[i].title;
+			                console.log(title);
+			                var eventMarker = L.marker([latPop, lngPop]).addTo(map);
+			                var descripPopUp = L.popup().setContent(title);
+			                function setMarker(e){
+			                  descripPopUp
+			                  .openOn(map);
+			                }
+			                eventMarker.on('click', setMarker);
+			                
+			               }
 
-  		  	  	console.log('latitude: ' + latitude + ' + longitude: ' + longitude);
-
-  		  	  	map = L.map('map').setView([latitude, longitude], 12);
-
-  		  	  	L.tileLayer('http://{s}.tile.cloudmade.com/58b8aaeed6f643f09991358eb6f2e588/1/256/{z}/{x}/{y}.png', {
-  		  	  	    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
-  		  	  	    maxZoom: 18
-  		  	  	}).addTo(map);
-
-              /* set marker for user's current location */
-  		  	  	var hereMarker = L.marker([latitude, longitude]).addTo(map);
+			             });
 
 
-  		  	  	var herePopUp = L.popup()
-  		  	  		.setLatLng([latitude, longitude])
-  		  	  		.setContent("You're here")
-  		  	  		.openOn(map);
+			              /* CREATING MAP WITH LEAFLET.JS */
 
 
-  		  	  	var clickPopUp = L.popup();
+			  		  	  	console.log('latitude: ' + latitude + ' + longitude: ' + longitude);
 
-  		  	  	function onMapClick(e) {
-  		  	  	    clickPopUp
-  		  	  	        .setLatLng(e.latlng)
-  		  	  	        .setContent("You clicked the map at " + e.latlng.toString())
-  		  	  	        .openOn(map);
-  		  	  	}
+			  		  	  	map = L.map('map').setView([latitude, longitude], 11);
 
-  		  	  	map.on('click', onMapClick);
+			  		  	  	L.tileLayer('http://{s}.tile.cloudmade.com/58b8aaeed6f643f09991358eb6f2e588/1/256/{z}/{x}/{y}.png', {
+			  		  	  	    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+			  		  	  	    maxZoom: 18
+			  		  	  	}).addTo(map);
 
-              var latlng = new L.LatLng(50.5, 30.5);
-              console.log(map.getBounds().contains(latlng));
-  		  	  
-
-  	      	} /* End showLocation*/
+			              /* set marker for user's current location */
+			  		  	  	var hereMarker = L.marker([latitude, longitude]).addTo(map);
 
 
-			//console.log('latitude: ' + latitude + ' + longitude: ' + longitude);
+			  		  	  	var herePopUp = L.popup()
+			  		  	  		.setLatLng([latitude, longitude])
+			  		  	  		.setContent("You're here")
+			  		  	  		.openOn(map);
+
+
+			  		  	  	var clickPopUp = L.popup();
+
+			  		  	  	function onMapClick(e) {
+			  		  	  	    clickPopUp
+			  		  	  	        .setLatLng(e.latlng)
+			  		  	  	        .setContent("You clicked the map at " + e.latlng.toString())
+			  		  	  	        .openOn(map);
+			  		  	  	}
+
+			  		  	  	map.on('click', onMapClick);
+
+			              var latlng = new L.LatLng(50.5, 30.5);
+			              console.log(map.getBounds().contains(latlng));
+			  		  	  
+
+			  	      	} /* End showLocation*/
+
+
+						//console.log('latitude: ' + latitude + ' + longitude: ' + longitude);
 
 
 		</script>
