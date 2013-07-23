@@ -8,7 +8,9 @@
     <!-- <script src="jquery-2.0.3.min.js"></script> -->
 </head>
 <body>
-	<div id="map" style="width: 100%; height: 600px;"></div>
+	 <div id="map"></div>
+
+   <%= render partial: "mapSearchHeader" %>
 
     <script type="text/javascript" src="http://api.evdb.com/js/api">
 
@@ -19,8 +21,8 @@
 
 		var latitude;
 		var longitude;
-  			
-  				
+
+
    if(navigator.geolocation) {
       // timeout at 60000 milliseconds (60 seconds)
       var options = {timeout:60000};
@@ -70,7 +72,7 @@
 
        within: 30,
 
-       units: 'mi', 
+       units: 'mi',
 
        date: "Today",
 
@@ -84,11 +86,11 @@
     console.log(oArgs);
 
     EVDB.API.call("/events/search", oArgs, function(response) {
-       
+
        console.log(response);
        var events = response.events.event;
 
-       
+
        for (var i=0; i<events.length; i++){
         var latPop = events[i].latitude;
         var lngPop = events[i].longitude;
@@ -97,7 +99,7 @@
         console.log(title);
         var eventMarker = L.marker([latPop, lngPop]).addTo(map);
         var descripPopUp = L.popup().setContent(title);
-        eventMarker.bindPopup(descripPopUp).openPopup().closePopup();        
+        eventMarker.bindPopup(descripPopUp).openPopup().closePopup();
        }
 
     }); /* end EVDB api call */
@@ -114,7 +116,7 @@
     /* test weather following lat/long is in the map */
     var latlng = new L.LatLng(50.5, 30.5);
     console.log(map.getBounds().contains(latlng));
-    
+
 
   	} /* End setMap function */
 
