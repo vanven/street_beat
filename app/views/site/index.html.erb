@@ -8,23 +8,40 @@
     <!-- <script src="jquery-2.0.3.min.js"></script> -->
 </head>
 <body>
-	<div id="map" style="width: 100%; height: 600px;">
-    <div class="box">
-        <form method="get" action="/search" id="search_form" class="large-6 columns">
-          <div class="label">Search</div>
-          <input autocomplete="off" id="find_desc" maxlength="64" name="find_desc" placeholder="Search" tabindex="1" value="">
+	 <div id="map">
+    <!-- header row -->
+    <div class="box row">
+      <!-- search field input row -->
+        <div class='large-5 large-offset-1 columns row'>
+          <form method="get" action="/search" id="search_form">
+            
+            <!-- search  -->
+            <div class='large-1 columns'>
+              <label class='right inline' for='search'>Search</label>
+            </div>
+            <div class='large-3 column'>
+              <input autocomplete="off" id="search" maxlength="64" name="search" placeholder="Search" tabindex="1">
+            </div>
+            <!-- where  -->
+            <div class='large-1 columns'>
+              <label class='right inline search-label' for='where'>Where</label>
+            </div>
+            <div class='large-3 columns'>
+              <input id="where" maxlength="64" name="where" placeholder="address, neighborhood, city, state or zip" tabindex="2">
+            </div>
+            <!-- submit -->
+            <button class='large-2 large-offset-1 column small button radius' id="search_submit" type="submit" value="submit">SEARCH</button>
+          </form>
+        </div> <!-- end row large-6 cols -->
 
-          <div class="label">Where</div>
-          <input id="" maxlength="64" name="find_loc" placeholder="address, neighborhood, city, state or zip" tabindex="2" value="Santa Monica, CA">
-          <input type="hidden" name="ns" value="1">
+        <!-- create event -->
+        <div class="large-1 large-offset-4 columns"><button id="create" type="submit" value="submit">Sign Up</button></div>
 
-          <button id="search_submit" type="submit" value="submit" class="tiny button radius">SEARCH</button>
-        </form>
+        <!-- sigin in -->
+        <div class="large-1 columns"><button id="login" type="submit" value="submit">Log In</button></div>
+      </div> <!-- end header class box -->
+    </div> <!-- end map -->
 
-        <button id="create" class="large-2 large-offset columns" type="submit" value="submit">Sign Up</button>
-        <button id="login" class="large-2 columns" type="submit" value="submit">Log In</button>
-    </div>
-  </div>
 
 
 
