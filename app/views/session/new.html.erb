@@ -1,0 +1,23 @@
+<div class="row">
+	<div class="large-4 columns">
+		<h2>Lost Password?</h2>
+		<p>
+			Lost password? Simply login with your email, leaving the password field blank. We'll send you a coded link via your email that will let you reset your password.
+		</p>
+	</div> <!-- end large-4 columns -->
+	<div class="large-8 columns">
+		<h1>Log in</h1>
+		<form action="/login" method="POST">
+			<p class='large-12 column'>
+				<input type="text" id="email" name="email" placeholder="Email address" class='large-4 column'>
+			</p>
+			<p class='large-12 column'>
+				<input type="password" id="password" name="password" placeholder="password" class='large-4 column'> &nbsp
+				<input type="submit" id="toggle-password-field" class="small button alert" value="Show Password">
+			</p>
+			<p class='large-12 column'>
+				<input type="submit" class="small button">
+			</p>
+		</form>
+	</div> <!-- end 8 columns -->
+</div> <!-- end row -->
