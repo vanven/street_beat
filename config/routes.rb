@@ -9,8 +9,6 @@ StreetBeat::Application.routes.draw do
   
   resources :users
 
-  resources :events
-
   resources :acts
 
   get "privacy" => "site#privacy"
