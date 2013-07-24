@@ -1,32 +1,43 @@
- <!-- header row -->
-    <div class="box row">
-      <!-- search field input row -->
-        <div class='large-5 large-offset-1 columns row'>
-          <form method="get" action="/search" id="search_form">
-            
-            <!-- search  -->
-            <div class='large-1 columns'>
-              <label class='right inline' for='search'>Search</label>
-            </div>
-            <div class='large-3 column'>
-              <input autocomplete="off" id="search" maxlength="64" name="search" placeholder="Search" tabindex="1">
-            </div>
-            <!-- where  -->
-            <div class='large-1 columns'>
-              <label class='right inline search-label' for='where'>Where</label>
-            </div>
-            <div class='large-3 columns'>
-              <input id="where" maxlength="64" name="where" placeholder="address, neighborhood, city, state or zip" tabindex="2">
-            </div>
-            <!-- submit -->
-            <button class='large-2 large-offset-1 column small button radius' id="search_submit" type="submit" value="submit">SEARCH</button>
-          </form>
-        </div> <!-- end row large-6 cols -->
+<nav class="top-bar">
+  <ul class="title-area">
+    <!-- Title Area -->
+    <li class="name">
+      <!-- Leave this empty -->
+    </li>
+    <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+  </ul>
 
-        <!-- create event -->
-        <div class="large-1 large-offset-4 columns"><button id="create" type="submit" value="submit">Sign Up</button></div>
+  <section class="top-bar-section">
+    <!-- Left Nav Section -->
+    <ul class="left">
+      <li class="divider"></li>
+      <li class="has-form">
+        <form>
+          <div class="row collapse">
+            <div class="small-5 columns">
+              <input type="text" placeholder="Search">
+            </div>
+            <div class="small-5 columns">
+              <input type="text" placeholder="Location">
+            </div>
+            <div class="small-2 columns">
+              <a href="#" class="postfix button">Search</a>
+            </div>
+          </div>
+        </form>
+      </li>
+      <li class="divider"></li>
 
-        <!-- sigin in -->
-        <div class="large-1 columns"><button id="login" type="submit" value="submit">Log In</button></div>
-      </div> <!-- end header class box -->
-    </div> <!-- end map -->
+    </ul>
+
+    <!-- Right Nav Section -->
+    <ul class="right">
+      <li class="divider hide-for-small"></li>
+      <li class="active"><a href="/users/new">Sign Up</a></li>
+      <li class="divider"></li>
+      <li><a href="/login">Log In</a></li>
+      <li class="divider"></li>
+    </ul>
+  </section>
+</nav>
