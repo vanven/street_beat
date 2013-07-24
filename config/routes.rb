@@ -1,5 +1,7 @@
 StreetBeat::Application.routes.draw do
   
+ 
+
   get "login" => "session#new"
   post "login" => "session#create"
   delete "logout" => "session#destroy"
@@ -8,6 +10,8 @@ StreetBeat::Application.routes.draw do
   resources :users
 
   resources :events
+
+  resources :acts
 
   get "privacy" => "site#privacy"
   get "terms" => "site#terms"
