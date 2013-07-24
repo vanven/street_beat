@@ -9,8 +9,6 @@ StreetBeat::Application.routes.draw do
   
   resources :users
 
-  resources :acts
-
   get "privacy" => "site#privacy"
   get "terms" => "site#terms"
 
