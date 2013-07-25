@@ -1,0 +1,10 @@
+<h1>Concerts</h1>
+<% @concerts.each do |c| %>
+	<ul>
+		<li><h3><%= link_to c.name, c %></h3></li>
+		<li><%= c.location %></li>
+		<li><%= c.occurs_at.strftime("%A, %d %B %Y at %I:%M %P") %></li>
+		<li><%= c.duration %></li>
+		<li><%= c.cover_charge %></li>
+	</ul>
+<% end %>

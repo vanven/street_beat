@@ -1,0 +1,50 @@
+<form action="" method="POST">
+  <fieldset>
+    <legend>Create an Event</legend>
+    <p>
+      Fill in your event info below.
+    </p>
+    <div class="row">
+      <div class="large-12 columns">
+        <label>Event Name</label>
+        <input type="text" id="event_name" name="event_name" placeholder="Event Name" class="large-12 columns clear">
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns">
+        <label>Musical Acts</label>
+        <input type="text" id="artist" name="artist" placeholder="Enter Artist(s) here, separated by commas." class="large-12 columns clear">
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns">
+        <label>Where</label>
+        <textarea id="where" name="where" placeholder="Where?" class="large-12 columns"></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-4 columns">
+        <label>When</label>
+        <input type="datetime-local" id="datetime" name="datetime" placeholder="Event Date & Start Time" class="">
+      </div>
+
+      <div class="large-4 columns">
+				<!-- <div class="row"> -->
+          <label>How Long?</label>
+	        <input type="number" id="how_long" name="how_long" value=0 min=0 max=24 class="large-8 columns">
+	        <span class="postfix large-4 columns">hours long</span>
+				<!-- </div> -->
+      </div>
+      <div class="large-4 columns">
+          <label>Cover Charge</label>
+					<span class="prefix large-4 columns">$</span>
+	        <input type="text" id="charge" name="charge" placeholder="Cover charge? e.g. 0.00" class="large-8 columns">
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns">
+        <input type="submit" value="Create Event" class="small button">
+      </div>
+    </div>
+  </fieldset>
+</form>
