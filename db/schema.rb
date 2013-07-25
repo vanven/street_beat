@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20130724233959) do
   create_table "locations", force: true do |t|
     t.string   "name"
     t.string   "street_line1"
-    t.string   "streetline2"
+    t.string   "street_line2"
     t.string   "zip_code"
     t.string   "lat_lng"
     t.datetime "created_at"
