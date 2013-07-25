@@ -3,6 +3,6 @@
 <ul>
 	<li>Where: <%= @concert.location%></li>
 	<li>Occurs on: <%= @concert_time %></li>
-	<li>Duration: <%= @concert.duration%></li>
-	<li>Cover: <%= @concert.cover_charge%></li>
+	<li>Duration: <%= @concert.duration_to_s%></li>
+	<li>Cover: <%= @concert.cover_to_money%></li>
 </ul>
