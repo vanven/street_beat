@@ -1,9 +1,7 @@
 StreetBeat::Application.routes.draw do
   resources :users
-
-  resources :events
-
-  resources :acts
+  resources :concerts
+  resources :performers
 
   # Login
   get "login" => "session#new"
@@ -13,13 +11,11 @@ StreetBeat::Application.routes.draw do
   delete "logout" => "session#destroy"
   get "logout" => "session#destroy"
 
-  # Password reset
-
+  # TODO: Password reset
 
   get "privacy" => "site#privacy"
   get "terms" => "site#terms"
 
   root 'site#index'
-
 
 end

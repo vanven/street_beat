@@ -11,21 +11,50 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130724004428) do
+ActiveRecord::Schema.define(version: 20130724233959) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "acts", force: true do |t|
+  create_table "concerts", force: true do |t|
+    t.string   "name"
+    t.datetime "occurs_at"
+    t.integer  "cover_charge"
+    t.integer  "duration"
+    t.integer  "location_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "concerts", ["location_id"], name: "index_concerts_on_location_id", using: :btree
+
+  create_table "locations", force: true do |t|
+    t.string   "name"
+    t.string   "street_line1"
+    t.string   "streetline2"
+    t.string   "zip_code"
+    t.string   "lat_lng"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "performers", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "events", force: true do |t|
+  create_table "time_slots", force: true do |t|
+    t.datetime "starts_at"
+    t.integer  "duration"
+    t.integer  "concert_id"
+    t.integer  "performer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "time_slots", ["concert_id"], name: "index_time_slots_on_concert_id", using: :btree
+  add_index "time_slots", ["performer_id"], name: "index_time_slots_on_performer_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"
