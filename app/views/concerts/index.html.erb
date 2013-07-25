@@ -2,9 +2,9 @@
 <% @concerts.each do |c| %>
 	<ul>
 		<li><h3><%= link_to c.name, c %></h3></li>
-		<li><%= c.location %></li>
+		<li><%= link_to c.location.name, c.location %></li>
 		<li><%= c.occurs_at.strftime("%A, %d %B %Y at %I:%M %P") %></li>
-		<li><%= c.duration %></li>
-		<li><%= c.cover_charge %></li>
+		<li><%= c.duration_to_s %></li>
+		<li><%= c.cover_to_money %></li>
 	</ul>
 <% end %>

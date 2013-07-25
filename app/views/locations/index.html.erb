@@ -1,0 +1,9 @@
+<h1>Locations</h1>
+<% @locations.each do |l| %>
+	<ul>
+		<li><h3><%= link_to l.name, l %></h3></li>
+		<li><%= l.street_line1 %></li>
+		<li><%= l.street_line2 %></li>
+		<li><%= l.zip_code %></li>
+	</ul>
+<% end %>

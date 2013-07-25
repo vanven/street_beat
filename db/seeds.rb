@@ -24,21 +24,26 @@ users = User.create([
   }
 ])
 
-loc = Location.create(
+locations = Location.create([
   {
     name: "Hollywood Bowl"
+  },
+  {
+    name: "El Rey"
   }
-)
+])
 
 concerts = Concert.create([
   {
     name: "The Beatles",
+    location: locations[0],
     occurs_at: Time.now + 1.day,
     duration: 240,
     cover_charge: 5000
   },
   {
     name: "The Rolling Stones",
+    location: locations[1],
     occurs_at: Time.now + 1.week,
     duration: 180,
     cover_charge: 4500
