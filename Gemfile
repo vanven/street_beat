@@ -7,6 +7,7 @@ gem 'rails', '4.0.0'
 # Use postgresql as the database for Active Record
 gem 'pg'
 
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
@@ -33,6 +34,9 @@ gem 'uglifier', '>= 1.3.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+
+# jquery UI 
+gem "jquery-ui-rails", "~>4.0.4"
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
