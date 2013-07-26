@@ -18,6 +18,7 @@
       </p>
 
       <h3>Time Slots</h3>
+      <%= form_for @concert, html: { autocomplete: :off } do |f| %>
       <div class='time_slot_block'>
         <p>
           <label>Performer</label>
@@ -37,6 +38,7 @@
       <p>
         <button class='time_slot_add button tiny round secondary right clear'>Add Another Time Slot</button>
       </p>
+      <% end %>
 
       <p>&nbsp;</p><br><br>
       <p>

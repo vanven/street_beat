@@ -9,9 +9,16 @@ class ConcertsController < ApplicationController
 
   def create 
     @concert = Concert.create params.require(:concert).permit(:name, :occurs_at, :duration, :cover_charge)
+    #@time_slot = TimeSlot.create params.require(:time_slot).permit(:starts_at, :duration)
+    #@concert.time_slots << @time_slot
     @concert.performers << Performer.find(params[:performer_id])
     @concert.locations << Location.find(params[:location_id])
     
+    if @concert 
+      redirect_to root_url
+    else
+      redirect_to root_url, alert: "concert not created"
+    end
 
   end
 

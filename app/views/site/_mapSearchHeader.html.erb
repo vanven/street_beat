@@ -34,8 +34,9 @@
     <!-- Right Nav Section -->
     <ul class="right">
       <li class="divider hide-for-small"></li>
-      <li style="display: <% @display %>" 
- class="active"><a href="users/new" class="boxdata" data-reveal-id="myModal" data-reveal-ajax="true">Create</a></li>
+      <% if signed_in? %>
+      <% end %>
+      <li class="active hidden"><a href="users/new" class="boxdata" data-reveal-id="myModal" data-reveal-ajax="true">Create</a></li>
       <li class="divider"></li>
       <li><a href="/login" class="boxdata" data-reveal-id="myModal" data-reveal-ajax="true">Log In</a></li>
       <li class="divider"></li>

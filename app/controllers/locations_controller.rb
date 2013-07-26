@@ -2,6 +2,7 @@ class LocationsController < ApplicationController
   def index
   	@locations = Location.all
 
+
     if params[:term]
       @location = Location.where('name iLIKE ?', "%#{params[:term]}%")
     else
@@ -12,6 +13,8 @@ class LocationsController < ApplicationController
     # Here is where you can specify how to handle the request for "/people.json"
         format.json { render :json => @location.to_json }
     end
+
+
   end
 
   def show

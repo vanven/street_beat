@@ -1,10 +1,6 @@
 class SiteController < ApplicationController
   def index
-  	unless session 
-  		@display = 'none'
-  	else
-  		@display = 'inline'
-  	end
+  	@display = 'hidden'
   end
 
   def privacy
@@ -12,4 +8,13 @@ class SiteController < ApplicationController
 
   def terms
   end
+  
+  def current_user=(user)
+    @current_user = user
+  end
+
+  def signed_in?
+    !current_user.nil?
+  end
+
 end
