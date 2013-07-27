@@ -4,7 +4,6 @@ $(function() {
 	performerAutoComplete();
 
 
-
 	$('#concert_location').autocomplete({
 	minLength: 3,
   source: function(request, response){
@@ -37,18 +36,6 @@ $(function() {
 	    append( "<a>" + item.name + "</a>" ).appendTo( ul );
 	};
 
-
-	$('.time_slot_add').click(function() {
-		var html = $('.time_slot_block').first().clone();
-		html.css('display', 'none');
-		html.find('input').val('');
-		$(this).before(html);
-
-	// $('.help_block').before(html);
-		html.slideDown(600);
-		performerAutoComplete();
-		return false;
-	});
 
 
 }); /*end anonymous function */
