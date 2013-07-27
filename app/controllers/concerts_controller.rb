@@ -8,9 +8,9 @@ class ConcertsController < ApplicationController
   end
 
   def create 
-    @concert = Concert.create params.require(:concert).permit(:name, :occurs_at, :duration, :cover_charge)
-    @concert.performers << Performer.find(params[:performer_id])
-    @concert.locations << Location.find(params[:location_id])
+    #@concert = Concert.create params.require(:concert).permit(:name, :occurs_at, :duration, :cover_charge)
+    #@concert.performers << Performer.find(params[:performer_id])
+    #@concert.locations << Location.find(params[:location_id])
     
 
   end

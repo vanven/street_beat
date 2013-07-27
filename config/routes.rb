@@ -1,5 +1,8 @@
 StreetBeat::Application.routes.draw do
 
+  get "fests/new"
+  post "fests" => "fests#create"
+
   resources :users
   resources :concerts
   resources :performers

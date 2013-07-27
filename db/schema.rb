@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20130724233959) do
   end
 
   create_table "time_slots", force: true do |t|
-    t.datetime "starts_at"
+    t.datetime "occurs_at"
     t.integer  "duration"
     t.integer  "concert_id"
     t.integer  "performer_id"

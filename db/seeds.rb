@@ -63,21 +63,21 @@ time_slots = TimeSlot.create([
   {
     concert: concerts[0],
     performer: performers[1],
-    starts_at: Time.now + 1.day
+    occurs_at: Time.now + 1.day
   },
   {
     concert: concerts[0],
     performer: performers[0],
-    starts_at: Time.now + 1.day + 2.hours
+    occurs_at: Time.now + 1.day + 2.hours
   },
   {
     concert: concerts[1],
     performer: performers[0],
-    starts_at: Time.now + 1.week + 2.hours
+    occurs_at: Time.now + 1.week + 2.hours
   },
   {
     concert: concerts[1],
     performer: performers[1],
-    starts_at: Time.now + 1.week + 2.hours
+    occurs_at: Time.now + 1.week + 2.hours
   }
 ])
