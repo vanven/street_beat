@@ -8,7 +8,9 @@ class SiteController < ApplicationController
 
   def terms
   end
+
   
+=begin
   def current_user=(user)
     @current_user = user
   end
@@ -16,5 +18,7 @@ class SiteController < ApplicationController
   def signed_in?
     !current_user.nil?
   end
+=end
+
 
 end

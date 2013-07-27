@@ -122,6 +122,19 @@
   	} /* End setMap function */
 
   </script>
+
+  <% @concerts.each do |concerts| %>
+    <script>
+     for (var i = 0; i<concerts.length; i++){
+      var latPop = concerts[i].latitude;
+      var lngPop = concerts[i].longitude;
+      var title = concerts[i].title;
+      var eventMarker = L.marker([latPop, lngPop]).addTo(map);
+      var descripPopUp = L.popup().setContent(title);
+     }
+    </script>
+  <% end %>
+
   <div id="myModal" class="reveal-modal">
     <div id="modal-content"></div>
     <a class="close-reveal-modal">&#215;</a>

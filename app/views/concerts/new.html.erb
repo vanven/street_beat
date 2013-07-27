@@ -18,20 +18,19 @@
       </p>
 
       <h3>Time Slots</h3>
-      <%= form_for @concert, html: { autocomplete: :off } do |f| %>
       <div class='time_slot_block'>
         <p>
           <label>Performer</label>
           <input type='text' class='concert_performers large-12 columns'/>
-          <input id="performer_id" name="performer_id" type="hidden"/>
+          <input id="performer_id" name="time_slots[][performer_id]" type="hidden"/>
         </p>
         <p>
           <%= f.label :occurs_at %>
-          <input type='datetime-local' name="time_slot_id" class='large-12 columns'/>
+          <input type='datetime-local' name="time_slots[][occurs_at]" class='large-12 columns'/>
         </p>
         <p>
           <%= f.label :duration %>
-          <%= f.number_field :duration %>
+          <input type='number' name="time_slots[][duration]" class='large-12 columns'/>
         </p>
         <hr>
       </div> <!-- end time slot block -->
