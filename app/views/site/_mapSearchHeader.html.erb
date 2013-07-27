@@ -35,9 +35,19 @@
     <ul class="right">
 
       <% unless session[:user_id] == nil %>
+        <% user = User.find(session[:user_id]) %>
         <li class="active"><a href="fests/new" class="boxdata" data-reveal-id="myModal" data-reveal-ajax="true">Create</a></li>
         <li class="divider"></li>
-        <li><a href="/logout" class="boxdata" data-reveal-id="myModal" data-reveal-ajax="true">Log Out</a></li>
+        <li class="has-dropdown">
+          <a><%= user.name %></a>
+          <ul class="dropdown">
+            <li><label><%= user.name %></label></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Dropdown Level 3b</a></li>
+            <li class="divider"></li>
+            <li><a href="/logout">Log Out</a></li>
+          </ul>
+        </li>
       <% else %>
         <li><a href="/login" class="boxdata" data-reveal-id="myModal" data-reveal-ajax="true">Log In</a></li>
       <% end %>
