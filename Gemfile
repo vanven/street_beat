@@ -6,7 +6,7 @@ gem 'rails', '4.0.0'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
-
+gem 'cocoon'
 
 group :development, :test do
   gem 'rspec-rails'

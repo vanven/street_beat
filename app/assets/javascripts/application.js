@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.all
+//= require cocoon
 //= require foundation
 //= require turbolinks
 //= require_tree .
