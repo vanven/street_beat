@@ -11,7 +11,7 @@ $(function() {
                type: "GET",
                url: "../locations",
                contentType: "application/json; charset=utf-8",
-               dataType: "json", 
+               dataType: "json",
                data: {term: $('#concert_location').val()},
                success: function (msg) {
                    console.log(msg);
@@ -31,10 +31,12 @@ $(function() {
     $('#location_id').val(ui.item.id);
             return false;
         }
-	}).data( "ui-autocomplete" )._renderItem = function( ul, item ) {
-	    return $( "<li></li>" ).data( "item.autocomplete", item ).
-	    append( "<a>" + item.name + "</a>" ).appendTo( ul );
-	};
+	});
+  var obj = $('#concert_location').data( "ui-autocomplete" );
+  obj && (obj._renderItem = function( ul, item ) {
+      return $( "<li></li>" ).data( "ui-autocomplete-item", item ).
+      append( "<a>" + item.name + "</a>" ).appendTo( ul );
+  });
 
 
 
@@ -48,7 +50,7 @@ function performerAutoComplete(){
                type: "GET",
                url: "../performers",
                contentType: "application/json; charset=utf-8",
-               dataType: "json", 
+               dataType: "json",
                data: {term: $('.concert_performers').val()},
                success: function (msg) {
                    console.log(msg);
@@ -68,8 +70,10 @@ function performerAutoComplete(){
     $('#performer_id').val(ui.item.id);
             return false;
         }
-	}).data( "ui-autocomplete" )._renderItem = function( ul, item ) {
-	    return $( "<li></li>" ).data( "item.autocomplete", item ).
+	});
+  var obj = $('.concert_performers').data( "ui-autocomplete" );
+  obj && (obj._renderItem = function( ul, item ) {
+	    return $( "<li></li>" ).data( "ui-autocomplete-item", item ).
 	    append( "<a>" + item.name + "</a>" ).appendTo( ul );
-	};
+	});
 } /* end function performerAutoComplete */
