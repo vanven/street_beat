@@ -26,7 +26,8 @@ users = User.create([
 
 locations = Location.create([
   {
-    name: "Hollywood Bowl"
+    name: "Hollywood Bowl",
+    lat_lng: '34.033252, -118.4973829'
   },
   {
     name: "El Rey"

@@ -54,7 +54,7 @@
 
   	map = L.map('map').setView([latitude, longitude], 11);
 
-  	L.tileLayer('http://{s}.tile.cloudmade.com/58b8aaeed6f643f09991358eb6f2e588/1/256/{z}/{x}/{y}.png', {
+  	L.tileLayer('http://{s}.tile.cloudmade.com/58b8aaeed6f643f09991358eb6f2e588/20214/256/{z}/{x}/{y}.png', {
   	    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
   	    maxZoom: 18
   	}).addTo(map);
@@ -106,7 +106,8 @@
     }); /* end EVDB api call */
 
     /* set marker for user's current location */
-    var hereMarker = L.marker([latitude, longitude]).addTo(map);
+    var greenIcon = L.icon({iconURL: '../../assets/images/marker-icon2.png'})
+    var hereMarker = L.marker([latitude, longitude], {icon: greenIcon}).addTo(map);
 
     /* set pop up for user's current location */
     var herePopUp = L.popup()
