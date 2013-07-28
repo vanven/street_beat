@@ -8,15 +8,14 @@ class ConcertsController < ApplicationController
   end
 
   def create 
-    #@concert = Concert.create params.require(:concert).permit(:name, :occurs_at, :duration, :cover_charge)
-    #@concert.performers << Performer.find(params[:performer_id])
-    #@concert.locations << Location.find(params[:location_id])
+    @concert = Concert.new(concert_params)
     
-
+    if @concert.save
+      redirect_to concerts_path
+    else
+      render :new
+    end
   end
-
-
-
 
   def edit
   	@concert = Concert.find params[:id]
@@ -25,5 +24,11 @@ class ConcertsController < ApplicationController
   def show
   	@concert = Concert.find params[:id]
   	@concert_time = @concert.occurs_at.strftime("%A, %d %B %Y at %I:%M %P")
+  end
+  
+  private
+  
+  def concert_params
+    params.require(:concert).permit!
   end
 end

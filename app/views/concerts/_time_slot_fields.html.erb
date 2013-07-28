@@ -1,0 +1,16 @@
+<div class="nested_fields">
+  <p>
+    <label>Performer</label>
+    <input type='text' class='concert_performers large-12 columns'/>
+    <input id="performer_id" name="performer_id" type="hidden"/>
+  </p>
+  <p>
+    <%= f.label :occurs_at %>
+    <input type='datetime-local' name="time_slot_id" class='large-12 columns'/>
+  </p>
+  <p>
+    <%= f.label :duration %>
+    <%= f.number_field :duration %>
+  </p>
+  <%= link_to_remove_association "remove time slot", f, class: "button" %>
+</div>
