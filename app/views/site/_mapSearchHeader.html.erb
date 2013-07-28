@@ -42,8 +42,7 @@
           <a><%= user.name %></a>
           <ul class="dropdown">
             <li><label><%= user.name %></label></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Dropdown Level 3b</a></li>
+            <li><%= link_to user.name, user_path(user.id) %></li>
             <li class="divider"></li>
             <li><a href="/logout">Log Out</a></li>
           </ul>
