@@ -77,7 +77,7 @@ function initAutoComplete(element){
     },
     select: function(event, ui) {
       element.val(ui.item.name);
-      $('#performer_id').val(ui.item.id);
+      $(element + '_id').val(ui.item.id);
       return false;
     }
 	});

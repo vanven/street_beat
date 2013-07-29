@@ -30,8 +30,7 @@ class ConcertsController < ApplicationController
   
   private
   
-  def concert_params
-    
+  def concert_params    
     params.require(:concert).permit!
   end
 
