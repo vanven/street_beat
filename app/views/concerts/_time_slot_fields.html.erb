@@ -1,8 +1,12 @@
 <div class="nested_fields">
+  <script>
+    var element = $('#time_slots .nested_fields').last().find('.foo');
+    initAutoComplete(element);
+  </script>
   <p>
-    <label>Performer</label>
-    <input type='text' class='concert_performers large-12 columns'/>
-    <input id="performer_id" name="performer_id" type="hidden"/>
+    <%= f.label :performer %>
+    <%= f.text_field :performer, class: "foo" %>
+    <%= f.hidden_field :performer_id %>
   </p>
   <p>
     <%= f.label :occurs_at %>

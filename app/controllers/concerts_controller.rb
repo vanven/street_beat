@@ -7,8 +7,10 @@ class ConcertsController < ApplicationController
     @concert = Concert.new
   end
 
-  def create 
+  def create
+    params[:concert].delete(:location)
     @concert = Concert.new(concert_params)
+    @concert.location = Location.find(params[:concert][:location_id])
 
     if @concert.save
       redirect_to root_url

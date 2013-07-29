@@ -1,12 +1,12 @@
 <%= form_for @concert, html: { autocomplete: :off } do |f| %>
   <p>
-    <%= f.label :name %>
+    <%= f.label :name, class: 'big' %>
     <%= f.text_field :name %>
   </p>
   <p>
     <%= f.label :location %>
-    <%= f.select_field :location %>
-    <%= f.hidden_field :location %>
+    <%= f.text_field :location %>
+    <%= f.hidden_field :location_id %>
   </p>
   <p>
     <%= f.label :cover_charge %>
