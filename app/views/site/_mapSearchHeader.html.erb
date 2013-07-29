@@ -36,7 +36,7 @@
 
       <% unless session[:user_id] == nil %>
         <% user = User.find(session[:user_id]) %>
-        <li class="active"><a href="fests/new" class="boxdata" data-reveal-id="myModal" data-reveal-ajax="true">Create</a></li>
+        <li class="active"><a href="concerts/new" class="boxdata" data-reveal-id="myModal" data-reveal-ajax="true">Create</a></li>
         <li class="divider"></li>
         <li class="has-dropdown">
           <a><%= user.name %></a>
