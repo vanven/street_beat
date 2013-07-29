@@ -1,4 +1,4 @@
-<%= form_for @concert, html: { autocomplete: :off } do |f| %>
+<%= form_for @concert, html: { autocomplete: :off, class: "custom" } do |f| %>
   <p>
     <%= f.label :name, class: 'big' %>
     <%= f.text_field :name %>

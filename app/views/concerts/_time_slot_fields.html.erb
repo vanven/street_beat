@@ -5,8 +5,7 @@
   </script>
   <p>
     <%= f.label :performer %>
-    <%= f.text_field :performer, class: "foo" %>
-    <%= f.hidden_field :performer_id %>
+    <%= f.select :performer_id, Performer.all.collect {|p| [ p.name, p.id ] } %>
   </p>
   <p>
     <%= f.label :occurs_at %>
