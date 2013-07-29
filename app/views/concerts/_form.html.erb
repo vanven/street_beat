@@ -4,9 +4,9 @@
     <%= f.text_field :name %>
   </p>
   <p>
-    <label>Location</label>
-    <input type='text' id="concert_location" class='large-12 columns'/>
-    <input id="location_id" name="location_id" type="hidden"/>
+    <%= f.label :location %>
+    <%= f.select_field :location %>
+    <%= f.hidden_field :location %>
   </p>
   <p>
     <%= f.label :cover_charge %>

@@ -6,11 +6,11 @@
   </p>
   <p>
     <%= f.label :occurs_at %>
-    <input type='datetime-local' name="time_slot_id" class='large-12 columns'/>
+    <%= f.datetime_local_field :occurs_at %>
   </p>
   <p>
     <%= f.label :duration %>
-    <%= f.number_field :duration %>
+    <%= f.number_field :duration, :min => 0 %>
   </p>
-  <%= link_to_remove_association "remove time slot", f, class: "button" %>
+  <%= link_to_remove_association "remove time slot", f, class: "button tiny right" %>
 </div>

@@ -9,9 +9,9 @@ class ConcertsController < ApplicationController
 
   def create 
     @concert = Concert.new(concert_params)
-    
+
     if @concert.save
-      redirect_to concerts_path
+      redirect_to root_url
     else
       render :new
     end
@@ -29,6 +29,8 @@ class ConcertsController < ApplicationController
   private
   
   def concert_params
+    
     params.require(:concert).permit!
   end
+
 end
