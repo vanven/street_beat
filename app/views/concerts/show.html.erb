@@ -1,8 +1,12 @@
-<h1>Concert <%=@concert.id%></h1>
-<h2><%= @concert.name%></h2>
-<ul>
-	<li>Where: <%= link_to @concert.location.name, @concert.location %></li>
-	<li>Occurs on: <%= @concert_time %></li>
-	<li>Duration: <%= @concert.duration_to_s%></li>
-	<li>Cover: <%= @concert.cover_to_money%></li>
-</ul>
+<div class="row">
+	<div class="large-12 columns">
+		<h1>Concert <%=@concert.id%></h1>
+		<h2><%= @concert.name%></h2>
+		<ul>
+			<li>Where: <%= link_to @concert.location.name, @concert.location %></li>
+			<li>Occurs on: <%= @concert_time %></li>
+			<li>Duration: <%= @concert.duration_to_s%></li>
+			<li>Cover: <%= @concert.cover_to_money%></li>
+		</ul>
+	</div>
+</div>
