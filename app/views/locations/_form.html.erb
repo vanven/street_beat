@@ -1,0 +1,31 @@
+<%= form_for @location, html: { autocomplete: :off, class: "custom" } do |f| %>
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :street_line1, value: "Street Line 1" %>
+    <%= f.text_field :street_line1 %>
+    <%= f.hidden_field :location_id %>
+    <%= link_to "Add Location", new_location_path %>
+  </p>
+  <p>
+    <%= f.label :cover_charge %>
+    <%= f.text_field :cover_charge %>
+  </p>
+
+  <h3>Time Slots</h3>
+  <div id="time_slots">
+    <%= f.fields_for :time_slots do |time_slot| %>
+      <%= render 'time_slot_fields', :f => time_slot %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association 'add time slot', f, :time_slots, class: "button" %>
+    </div>
+  </div>
+
+  <p>&nbsp;</p><br><br>
+  <p>
+    <%= f.submit class: 'button large ' %>
+  </p>
+<% end %>
