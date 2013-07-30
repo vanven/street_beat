@@ -96,8 +96,8 @@
         var latPop = events[i].latitude;
         var lngPop = events[i].longitude;
         var title = events[i].title;
-        title = '<a href=#>'+title+'</a>';
-        console.log(title);
+        var url = events[i].url;
+        title = '<a href='+ url +'>'+title+'</a>';
         var eventMarker = L.marker([latPop, lngPop]).addTo(map);
         var descripPopUp = L.popup().setContent(title);
         eventMarker.bindPopup(descripPopUp).openPopup().closePopup();
@@ -105,24 +105,53 @@
 
     }); /* end EVDB api call */
 
-    /* set marker for user's current location */
-    var greenIcon = L.icon({iconURL: '../../assets/images/marker-icon2.png'})
-    var hereMarker = L.marker([latitude, longitude], {icon: greenIcon}).addTo(map);
+      /* set marker for user's current location */
+      var hereMarker = L.marker([latitude, longitude]).addTo(map);
 
-    /* set pop up for user's current location */
-    var herePopUp = L.popup()
-      .setLatLng([latitude, longitude])
-      .setContent("You're here")
-      .openOn(map);
+      /* set pop up for user's current location */
+      var herePopUp = L.popup()
+        .setLatLng([latitude, longitude])
+        .setContent("You're here")
+        .openOn(map);
 
-    /* test weather following lat/long is in the map */
-    var latlng = new L.LatLng(50.5, 30.5);
-    console.log(map.getBounds().contains(latlng));
 
+
+      /* test weather following lat/long is in the map */
+      var latlng = new L.LatLng(50.5, 30.5);
+      console.log(map.getBounds().contains(latlng));
+
+
+      <% @concerts.each do |concert| %>
+        var marker_<%= concert.id %> = L.marker([<%= concert.location.lat_lng %>]).addTo(map);
+        var title = "<a class='popdata' data-reveal-id='myModal' data-reveal-ajax='true' href='/concerts/" + <%= concert.id.to_s %> + "'><%=concert.name %> </a>";
+        modalClick();
+        var descripPopUp = L.popup().setContent(title);
+        marker_<%= concert.id %>.bindPopup(descripPopUp).openPopup().closePopup();
+      <% end %>
+
+
+      function modalClick(){
+        console.log('modalClick executed');
+        $('a.popdata').on('click', function(){
+            console.log('click event executed');
+            var href = $(this).attr('href');
+            console.log(href);
+            $.ajax({
+                 url : href,
+                 success: function(html) {
+                  $('#modal-content').html(html);
+                 }
+            });
+        });
+      }
 
   	} /* End setMap function */
-
   </script>
+
+
+
+  
+
   <div id="myModal" class="reveal-modal">
     <div id="modal-content"></div>
     <a class="close-reveal-modal">&#215;</a>

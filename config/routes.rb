@@ -5,9 +5,6 @@ StreetBeat::Application.routes.draw do
 
   resource :password, only: [ :update ]
 
-  get "fests/new"
-  post "fests" => "fests#create"
-
   resources :users
   resources :concerts
   resources :performers

@@ -2,6 +2,8 @@ class Concert < ActiveRecord::Base
   belongs_to :location
   has_many :time_slots
   has_many :performers, through: :time_slots
+  
+  accepts_nested_attributes_for :time_slots, :reject_if => :all_blank, :allow_destroy => true
 
   def duration_to_s
   	hours = duration/60

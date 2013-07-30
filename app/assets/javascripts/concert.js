@@ -1,7 +1,16 @@
-
 $(function() {
 
-	performerAutoComplete();
+  $('#time_slots').change(function(){  
+    //$('#time_slots').children('.nested_fields', function(){
+      $(this).children('*').each(function( index ) {
+
+        console.log( index + ": " + $(this).html() );
+      });
+  });
+
+  $('#time_slots').on('click', function(){
+    //console.log('clicked');
+  });
 
 
 	$('#concert_location').autocomplete({
@@ -28,7 +37,7 @@ $(function() {
   },
   select: function(event, ui) {
     $('#concert_location').val(ui.item.name);
-    $('#location_id').val(ui.item.id);
+    $('#concert_location_id').val(ui.item.id);
             return false;
         }
 	});
@@ -42,38 +51,39 @@ $(function() {
 
 }); /*end anonymous function */
 
-function performerAutoComplete(){
-	$('.concert_performers').autocomplete({
-	minLength: 3,
-  source: function(request, response){
-           $.ajax({
-               type: "GET",
-               url: "../performers",
-               contentType: "application/json; charset=utf-8",
-               dataType: "json",
-               data: {term: $('.concert_performers').val()},
-               success: function (msg) {
-                   console.log(msg);
-                   response(msg);
-               },
-               error: function (msg) {
-                   alert(msg.status + ' ' + msg.statusText);
-               }
-           })
-       },
-  focus: function(event, ui) {
-      $('.concert_performers').val(ui.item.name);
+
+function initAutoComplete(element){
+	element.autocomplete({
+  	minLength: 3,
+    source: function(request, response){
+             $.ajax({
+                 type: "GET",
+                 url: "../performers",
+                 contentType: "application/json; charset=utf-8",
+                 dataType: "json",
+                 data: {term: element.val()},
+                 success: function (msg) {
+                     console.log(msg);
+                     response(msg);
+                 },
+                 error: function (msg) {
+                     alert(msg.status + ' ' + msg.statusText);
+                 }
+             })
+         },
+    focus: function(event, ui) {
+        element.val(ui.item.name);
+        return false;
+    },
+    select: function(event, ui) {
+      element.val(ui.item.name);
+      $(element + '_id').val(ui.item.id);
       return false;
-  },
-  select: function(event, ui) {
-    $('.concert_performers').val(ui.item.name);
-    $('#performer_id').val(ui.item.id);
-            return false;
-        }
+    }
 	});
-  var obj = $('.concert_performers').data( "ui-autocomplete" );
+  var obj = element.data( "ui-autocomplete" );
   obj && (obj._renderItem = function( ul, item ) {
 	    return $( "<li></li>" ).data( "ui-autocomplete-item", item ).
 	    append( "<a>" + item.name + "</a>" ).appendTo( ul );
 	});
-} /* end function performerAutoComplete */
+} /* end function initAutoComplete */
