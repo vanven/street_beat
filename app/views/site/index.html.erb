@@ -118,8 +118,20 @@
     var latlng = new L.LatLng(50.5, 30.5);
     console.log(map.getBounds().contains(latlng));
 
+      var popup = L.popup();
+
+      function onMapClick(e) {
+          popup
+              .setLatLng(e.latlng)
+              .setContent("You clicked the map at " + e.latlng.toString())
+              .openOn(map);
+      }
+
+      map.on('click', onMapClick);
 
   	} /* End setMap function */
+
+
 
   </script>
   <div id="myModal" class="reveal-modal">
