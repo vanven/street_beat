@@ -1,8 +1,13 @@
-<h1>Concert <%=@concert.id%></h1>
-<h2><%= @concert.name%></h2>
+<h1><%= @concert.name%></h1>
 <ul>
 	<li>Where: <%= link_to @concert.location.name, @concert.location %></li>
-	<li>Occurs on: <%= @concert_time %></li>
-	<li>Duration: <%= @concert.duration_to_s%></li>
 	<li>Cover: <%= @concert.cover_to_money%></li>
+	<% @concert.time_slots.each_with_index do |ts, index| %>
+		<p></p>
+		<li>Time Slot: #<%= index+1 %></li>
+		<% @performer = Performer.find_by(id: ts[:performer_id]) %>
+		<li>Performer: <%= link_to @performer.name, @performer %> </li>
+		<li>Occurs at: <%= ts.occurs_at_to_s %></li>
+		<li>Duration: <%= ts.duration %></li>
+	<% end %>
 </ul>

@@ -26,34 +26,44 @@ users = User.create([
 
 locations = Location.create([
   {
-    name: "Hollywood Bowl"
+    name: "Hollywood Bowl",
+    lat_lng: "34.02869, -118.46549"
   },
   {
-    name: "El Rey"
+    name: "El Rey",
+    lat_lng: "34.03922, -118.46343"
   },
   {
-    name: "Whiskey A Go Go"
+    name: "Whiskey A Go Go",
+    lat_lng: "34.039, -118.48523"
   },
   {
-    name: "Walt Disney Concert Hall"
+    name: "Walt Disney Concert Hall",
+    lat_lng: "34.02421, -118.4176"
   },
   {
-    name: "Echoplex"
+    name: "Echoplex",
+    lat_lng: "34.04633, -118.48583"
   },
   {
-    name: "STAPLES Center"
+    name: "STAPLES Center",
+    lat_lng: "34.04413, -118.41356"
   },
   {
-    name: "Troubadour"
+    name: "Troubadour",
+    lat_lng: "34.06894, -118.44343"
   },
   {
-    name: "The Smell"
+    name: "The Smell",
+    lat_lng: "34.05074, -118.39271"
   },
   {
-    name: "Greek Theatre"
+    name: "Greek Theatre",
+    lat_lng: "34.02599, -118.4024"
   },
   {
-    name: "House of Blues"
+    name: "House of Blues",
+    lat_lng: "34.04213, -118.38369"
   }
 ])
 

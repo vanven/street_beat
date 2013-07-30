@@ -25,7 +25,6 @@ class ConcertsController < ApplicationController
 
   def show
   	@concert = Concert.find params[:id]
-  	@concert_time = @concert.occurs_at.strftime("%A, %d %B %Y at %I:%M %P")
   end
   
   private
