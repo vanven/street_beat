@@ -123,11 +123,27 @@
 
       <% @concerts.each do |concert| %>
         var marker_<%= concert.id %> = L.marker([<%= concert.location.lat_lng %>]).addTo(map);
-        var title = "<a href='/concerts/" + <%= concert.id.to_s %> + "'><%=concert.name %> </a>";
-        console.log(title);
+        var title = "<a class='popdata' data-reveal-id='myModal' data-reveal-ajax='true' href='/concerts/" + <%= concert.id.to_s %> + "'><%=concert.name %> </a>";
+        modalClick();
         var descripPopUp = L.popup().setContent(title);
         marker_<%= concert.id %>.bindPopup(descripPopUp).openPopup().closePopup();
       <% end %>
+
+
+      function modalClick(){
+        console.log('modalClick executed');
+        $('a.popdata').on('click', function(){
+            console.log('click event executed');
+            var href = $(this).attr('href');
+            console.log(href);
+            $.ajax({
+                 url : href,
+                 success: function(html) {
+                  $('#modal-content').html(html);
+                 }
+            });
+        });
+      }
 
   	} /* End setMap function */
   </script>
