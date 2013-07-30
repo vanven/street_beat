@@ -6,6 +6,7 @@
   <p>
     <%= f.label :performer %>
     <%= f.select :performer_id, Performer.all.collect {|p| [ p.name, p.id ] } %>
+    <%= link_to "Add Performer", new_performer_path %>
   </p>
   <p>
     <%= f.label :occurs_at %>
