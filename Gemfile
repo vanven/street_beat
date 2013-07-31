@@ -20,6 +20,12 @@ group :development, :test do
   gem 'ffaker'
 end
 
+#geo - location gems 
+
+#geocoder 
+gem 'geocoder'
+gem 'area'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 

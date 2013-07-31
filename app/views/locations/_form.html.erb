@@ -44,11 +44,19 @@
     <%= f.text_field :street_line1 %>
     <%= f.hidden_field :lat_lng %>
   </p>
-  <p>
-    <%= f.label :street_line2, value: "Street Line 2" %>
+    <p>
+    <%= f.label :street_line2 %>
     <%= f.text_field :street_line2 %>
   </p>
   <p>
+    <%= f.label :city %>
+    <input type="text" id="location_city" name="location[city]"/>
+  </p>
+    <p>
+    <%= f.label :state %>
+    <input type="text" id="location_state" name="location[state]"/>
+  </p>
+    <p>
     <%= f.label :zip_code %>
     <%= f.text_field :zip_code %>
   </p>

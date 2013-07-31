@@ -27,6 +27,8 @@ class LocationsController < ApplicationController
 
   def create 
     @location = Location.new(location_params)
+      
+    @location.make_address
 
     if @location.save
       redirect_to concert_new_path
@@ -37,11 +39,32 @@ class LocationsController < ApplicationController
   end
 
   def edit
+    
   end
 
-    private
+  private
   
   def location_params    
-    params.require(:location).permit(:name, :street_lin1, :street_line2, :zip_code, :lat_lng)
+    params.require(:location).permit(:name, :street_line1, :street_line2, :zip_code)
   end
+
+  def make_address
+    
+    if params[:city] == nil or params[:state] == nil and params[:zip_code] != nil
+      city = params[:zip_code].to_region(:city => true)
+      state = params[:zip_code].to_region(:state => true)
+    else
+      city = params[:city]
+      state = params[:state]
+    end
+
+    @location.address = params[:street_line1] + ',' + params[:street_line2] + ',' + city  + ',' + state
+
+  end
+
+  def zip_from_city_and_state
+    region = params[:city].to_s + params[:state].to_s
+    @location[:zip_code] = region.to_zip
+  end
+
 end
