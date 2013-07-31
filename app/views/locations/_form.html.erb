@@ -1,0 +1,60 @@
+<%= form_for @location, html: { autocomplete: :off } do |f| %>
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= link_to "Here?", new_location_path, class:"here tiny button" %>
+    <script> 
+      $('.here').on('click', function(){
+
+        var latitude;
+        var longitude;
+
+
+         if(navigator.geolocation) {
+            // timeout at 60000 milliseconds (60 seconds)
+            var options = {timeout:60000};
+            navigator.geolocation.getCurrentPosition(setMap, errorHandler, options);
+         }
+         else {
+               alert("Sorry, browser does not support geolocation!");
+         }
+
+        function errorHandler(err) {
+          if(err.code == 1) {
+            console.log(err);
+            alert("Error: Access to your location is denied by browser!");
+          }
+          else if( err.code == 2) {
+            alert("Error: Position is unavailable!");
+          }
+        } /* end errorHandler */
+
+        function setMap(position) {
+
+          latitude = position.coords.latitude;
+          longitude = position.coords.longitude;
+          
+          $('#location.street_line1').val('Here').attr('readonly', 'true');
+          $('#location.street_line2').val('Here').attr('readonly', 'true');        
+        })
+    </script>
+    <%= f.label :street_line1, value: "Street Line 1" %>
+    <%= f.text_field :street_line1 %>
+    <%= f.hidden_field :lat_lng %>
+  </p>
+  <p>
+    <%= f.label :street_line2, value: "Street Line 2" %>
+    <%= f.text_field :street_line2 %>
+  </p>
+  <p>
+    <%= f.label :zip_code %>
+    <%= f.text_field :zip_code %>
+  </p>
+
+  <p>&nbsp;</p><br><br>
+  <p>
+    <%= f.submit class: 'button large ' %>
+  </p>
+<% end %>

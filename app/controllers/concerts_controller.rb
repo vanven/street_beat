@@ -7,26 +7,16 @@ class ConcertsController < ApplicationController
     @concert = Concert.new
   end
 
-  def create 
-    @concert = Concert.create params.require(:concert).permit(:name, :occurs_at, :duration, :cover_charge)
-    
-    time_slot_params["time_slots"].each do |ts|
-      time_slot = TimeSlot.create :time_slot => ts 
-      @concert.time_slots << time_slot  
-    end
+  def create
+    params[:concert].delete(:location)
+    @concert = Concert.new(concert_params)
+    @concert.location = Location.find(params[:concert][:location_id])
 
-    
-    
-    @concert.performers << Performer.find(params[:performer_id])
-    
-    @concert.locations << Location.find(params[:location_id])
-    
-    if @concert 
+    if @concert.save
       redirect_to root_url
     else
-      redirect_to root_url, alert: "concert not created"
+      render :new
     end
-
   end
 
   def edit
@@ -35,13 +25,12 @@ class ConcertsController < ApplicationController
 
   def show
   	@concert = Concert.find params[:id]
-  	@concert_time = @concert.occurs_at.strftime("%A, %d %B %Y at %I:%M %P")
+  end
+  
+  private
+  
+  def concert_params    
+    params.require(:concert).permit!
   end
 
-
-  private 
-
-  def time_slot_params
-    params.permit(:time_slots => [:performer_id, :occurs_at, :duration])
-  end
 end

@@ -54,7 +54,7 @@
 
   	map = L.map('map').setView([latitude, longitude], 11);
 
-  	L.tileLayer('http://{s}.tile.cloudmade.com/58b8aaeed6f643f09991358eb6f2e588/1/256/{z}/{x}/{y}.png', {
+  	L.tileLayer('http://{s}.tile.cloudmade.com/58b8aaeed6f643f09991358eb6f2e588/20214/256/{z}/{x}/{y}.png', {
   	    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
   	    maxZoom: 18
   	}).addTo(map);
@@ -96,8 +96,8 @@
         var latPop = events[i].latitude;
         var lngPop = events[i].longitude;
         var title = events[i].title;
-        title = '<a href=#>'+title+'</a>';
-        console.log(title);
+        var url = events[i].url;
+        title = '<a href='+ url +'>'+title+'</a>';
         var eventMarker = L.marker([latPop, lngPop]).addTo(map);
         var descripPopUp = L.popup().setContent(title);
         eventMarker.bindPopup(descripPopUp).openPopup().closePopup();
@@ -105,22 +105,49 @@
 
     }); /* end EVDB api call */
 
-    /* set marker for user's current location */
-    var hereMarker = L.marker([latitude, longitude]).addTo(map);
+      /* set marker for user's current location */
+      var hereMarker = L.marker([latitude, longitude]).addTo(map);
 
-    /* set pop up for user's current location */
-    var herePopUp = L.popup()
-      .setLatLng([latitude, longitude])
-      .setContent("You're here")
-      .openOn(map);
+      /* set pop up for user's current location */
+      var herePopUp = L.popup()
+        .setLatLng([latitude, longitude])
+        .setContent("You're here")
+        .openOn(map);
 
-    /* test weather following lat/long is in the map */
-    var latlng = new L.LatLng(50.5, 30.5);
-    console.log(map.getBounds().contains(latlng));
 
+
+      /* test weather following lat/long is in the map */
+      var latlng = new L.LatLng(50.5, 30.5);
+      console.log(map.getBounds().contains(latlng));
+
+
+      var concerts = [<%= @concertsjs %>];
+
+
+      var len = concerts.length;
+      for (var i = 0; i < len; i++) {
+        console.log(concerts[i].lat, concerts[i].lng);
+        var marker = L.marker([concerts[i].lat, concerts[i].lng]).addTo(map);
+        var title = "<a class='popdata' data-reveal-id='myModal' data-reveal-ajax='true' href='/concerts/" + concerts[i].id + "'>" + concerts[i].title + "</a>";
+        var descripPopUp = L.popup().setContent(title);
+        marker.bindPopup(descripPopUp).openPopup().closePopup();
+      }
+
+
+
+        $('a.popdata').on('click', function(){
+            console.log('click event executed');
+            var href = $(this).attr('href');
+            console.log(href);
+            $.ajax({
+                 url : href,
+                 success: function(html) {
+                  $('#modal-content').html(html);
+                 }
+            });
+        });
 
   	} /* End setMap function */
-
   </script>
 
   <% @concerts.each do |concerts| %>
@@ -134,6 +161,7 @@
      }
     </script>
   <% end %>
+
 
   <div id="myModal" class="reveal-modal">
     <div id="modal-content"></div>

@@ -19,5 +19,9 @@ class PerformersController < ApplicationController
 
   def edit
   end
+
+  def show
+    @performer = Performer.find_by(id: params[:id])
+  end
 end
 

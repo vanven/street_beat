@@ -1,36 +1,8 @@
-<form action="" method="POST">
-  <fieldset>
-    <legend>Create a Venue</legend>
-    <p>
-      Fill in your venue info below.
-    </p>
-    <div class="row">
-      <div class="large-12 columns">
-        <label>Venue Name</label>
-        <input type="text" id="venue_name" name="venue_name" placeholder="Event Name" class="large-12 columns clear">
-      </div>
-    </div>
-    <div class="row">
-      <div class="large-12 columns">
-        <label>Address</label><button class="tiny large-2 columns">Here?</button>
-        <input type="text" id="street_line1" name="street_line1" placeholder="Street Line 1" class="large-12 columns clear">
-      </div>
-    </div>
-    <div class="row">
-      <div class="large-12 columns">
-        <input type="text" id="street_line2" name="street_line2" placeholder="Street Line2" class="large-12 columns"></input>
-      </div>
-    </div>
-    <div class="row">
-      <div class="large-4 columns">
-        <label>Zip</label>
-        <input type="text" id="zip_code" name="zip_code" placeholder="Zip" class="large-12 columns">
-      </div>
+<div class="row">
+  <div class="large-4 columns">
+    <h1>Create a new Concert</h1>
+    <%= render "form" %>
+  </div>
+</div>
 
-    <div class="row">
-      <div class="large-12 columns">
-        <input type="submit" value="Create Event" class="small button">
-      </div>
-    </div>
-  </fieldset>
-</form>
+

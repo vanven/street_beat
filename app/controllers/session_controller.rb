@@ -11,7 +11,15 @@ class SessionController < ApplicationController
 			user.expires_at = Time.now + 4.hours
 			user.save
 
-			#PasswordMailer.reset_email(user).deliver
+			PasswordMailer.reset_email(user).deliver
+		else
+			registrant = Registrant.new
+			registrant.email = params[:email]
+			registrant.code = SecureRandom.urlsafe_base64
+			registrant.expires_at = Time.now + 4.hours
+			registrant.save
+
+			RegistrantMailer.register_email(registrant).deliver
 		end
 
 		render :new
@@ -30,7 +38,7 @@ class SessionController < ApplicationController
 
   def destroy
   	session[:user_id] = nil
-  	redirect_to login_url, notice: "You've successfully logged out."
+  	redirect_to root_url, notice: "You've successfully logged out."
   end
 
 end

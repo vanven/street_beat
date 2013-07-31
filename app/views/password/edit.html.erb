@@ -1,11 +1,11 @@
-<h1>Add a new user</h1>
+<div class="row">
+  <div class="large-10 columns large-offset-2">
+    <h1>Set Your Password</h1>
+  </div>
+</div>
 <div class="row">
   <div class="large-3 columns large-offset-2">
-
     <%= form_for @user, html: { autocomplete: :off } do |f| %>
-    	<% @registrant = Registrant.find_by(code: params[:code]) %>
-			<%= f.label :email %>
-			<%= f.text_field :email, value: @registrant.email, readonly: true %>
       <p>
         <%= f.label :password %>
         <%# autofocus puts the cursor in this input on page load %>
@@ -25,8 +25,8 @@
         <%# We start with the submit button disabled. %>
         <%= f.submit "Save password", id: "save-password", class: "button alert disabled" %>
       </p>
-		<% end %>
-	</div>
+    <% end %>
+  </div>
   <div class="large-7 columns">
     <%#
       This is the password strength meter. We will use the
