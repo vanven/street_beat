@@ -121,17 +121,20 @@
       console.log(map.getBounds().contains(latlng));
 
 
-      <% @concerts.each do |concert| %>
-        var marker_<%= concert.id %> = L.marker([<%= concert.location.lat_lng %>]).addTo(map);
-        var title = "<a class='popdata' data-reveal-id='myModal' data-reveal-ajax='true' href='/concerts/" + <%= concert.id.to_s %> + "'><%=concert.name %> </a>";
-        modalClick();
+      var concerts = [<%= @concertsjs %>];
+
+
+      var len = concerts.length;
+      for (var i = 0; i < len; i++) {
+        console.log(concerts[i].lat, concerts[i].lng);
+        var marker = L.marker([concerts[i].lat, concerts[i].lng]).addTo(map);
+        var title = "<a class='popdata' data-reveal-id='myModal' data-reveal-ajax='true' href='/concerts/" + concerts[i].id + "'>" + concerts[i].title + "</a>";
         var descripPopUp = L.popup().setContent(title);
-        marker_<%= concert.id %>.bindPopup(descripPopUp).openPopup().closePopup();
-      <% end %>
+        marker.bindPopup(descripPopUp).openPopup().closePopup();
+      }
 
 
-      function modalClick(){
-        console.log('modalClick executed');
+
         $('a.popdata').on('click', function(){
             console.log('click event executed');
             var href = $(this).attr('href');
@@ -143,7 +146,6 @@
                  }
             });
         });
-      }
 
   	} /* End setMap function */
   </script>
