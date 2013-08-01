@@ -1,7 +1,9 @@
 <h1>Location <%= @location.id %></h1>
 <ul>
 	<li><h3><%= @location.name %></h3></li>
-	<li><%= @location.street_line1 %></li>
-	<li><%= @location.street_line2 %></li>
-	<li><%= @location.zip_code %></li>
+	<li><%= @location.address_split[0]%></li>
+	<li><%= @location.address_split[1] %></li>
+	<li><%= @location.address_split[2] %></li>
+	<li><%= @location.address_split[3] %></li>
+	<li><%= @location.address_split[4] %></li>
 </ul>

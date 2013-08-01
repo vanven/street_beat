@@ -26,12 +26,11 @@ class LocationsController < ApplicationController
   end
 
   def create 
-    @location = Location.new(location_params)
-      
-    @location.make_address
+    @location = Location.new(make_address)
+    
 
     if @location.save
-      redirect_to concert_new_path
+      redirect_to new_concert_path
     else
       render :new
     end
@@ -42,29 +41,41 @@ class LocationsController < ApplicationController
     
   end
 
-  private
   
-  def location_params    
-    params.require(:location).permit(:name, :street_line1, :street_line2, :zip_code)
-  end
+  private
 
   def make_address
-    
-    if params[:city] == nil or params[:state] == nil and params[:zip_code] != nil
-      city = params[:zip_code].to_region(:city => true)
-      state = params[:zip_code].to_region(:state => true)
-    else
-      city = params[:city]
-      state = params[:state]
+
+    location = params[:location]
+      #zip_code 
+    location[:zip_code] = location[:zip_code].slice(0, 5)
+    if location[:zip_code].to_i.to_s.length != 5
+      redirect_to :new_location
     end
 
-    @location.address = params[:street_line1] + ',' + params[:street_line2] + ',' + city  + ',' + state
+    @city
+    @state
+    @zip_code = location[:zip_code]
+  
+    if location[:city] == '' or location[:state] == '' and location[:zip_code] != ''
+      puts('*' * 20)
+      puts(location[:zip_code])
+      @city = location[:zip_code].to_region(:city => true)
+      @state = location[:zip_code].to_region(:state => true)
+    else
+      @city = location[:city]
+      @state = location[:state]
+    end
 
+    {name: location[:name], address: location[:street_line1] + ',' + location[:street_line2] + ',' + @city  + ',' + @state + ',' + @zip_code}
   end
 
   def zip_from_city_and_state
     region = params[:city].to_s + params[:state].to_s
     @location[:zip_code] = region.to_zip
   end
+
+
+
 
 end

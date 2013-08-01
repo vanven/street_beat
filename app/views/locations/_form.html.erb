@@ -41,24 +41,23 @@
         })
     </script>
     <%= f.label :street_line1, value: "Street Line 1" %>
-    <%= f.text_field :street_line1 %>
-    <%= f.hidden_field :lat_lng %>
+    <input type="text" id="location_street_line1" name="location[street_line1]"/>
   </p>
-    <p>
+  <p>
     <%= f.label :street_line2 %>
-    <%= f.text_field :street_line2 %>
+    <input type="text" id="location_street_line2" name="location[street_line2]"/>
   </p>
   <p>
     <%= f.label :city %>
     <input type="text" id="location_city" name="location[city]"/>
   </p>
-    <p>
+  <p>
     <%= f.label :state %>
     <input type="text" id="location_state" name="location[state]"/>
   </p>
-    <p>
+  <p>
     <%= f.label :zip_code %>
-    <%= f.text_field :zip_code %>
+    <input type="number" id="location_zip_code" name="location[zip_code]"/>
   </p>
 
   <p>&nbsp;</p><br><br>
