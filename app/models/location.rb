@@ -4,7 +4,10 @@ class Location < ActiveRecord::Base
 
 	geocoded_by :address
 	reverse_geocoded_by :latitude, :longitude
-	after_validation :geocode, :reverse_geocode, :if => :address_changed?
+
+
+	before_save :reverse_geocode
+	before_save :geocode, :if => :address_changed?
 
 
 	def address_split

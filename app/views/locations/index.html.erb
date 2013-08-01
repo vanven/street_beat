@@ -2,8 +2,15 @@
 <% @locations.each do |l| %>
 	<ul>
 		<li><h3><%= link_to l.name, l %></h3></li>
-		<li><%= l.street_line1 %></li>
-		<li><%= l.street_line2 %></li>
-		<li><%= l.zip_code %></li>
+		<% unless l.address == nil %>
+	 		<li><%= l.address_split[0]%></li>
+			<li><%= l.address_split[1] %></li>
+			<li><%= l.address_split[2] %></li>
+			<li><%= l.address_split[3] %></li>
+			<li><%= l.address_split[4] %></li> 
+		<% else %>
+			<li>Latitude: <%= l.latitude %></li>
+			<li>Longitude: <%= l.longitude %></li>
+		<% end %>
 	</ul>
 <% end %>

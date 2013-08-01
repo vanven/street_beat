@@ -27,7 +27,6 @@ class SessionController < ApplicationController
   		user = User.authenticate(params[:email], params[:password])
 
   		if user
-  			@session = Session.create
 			session[:user_id] = user.id
 	  		redirect_to root_url, notice: "You've successfully logged in!"
 	  	else

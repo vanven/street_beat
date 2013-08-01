@@ -1,9 +1,35 @@
-<h1>Location <%= @location.id %></h1>
-<ul>
-	<li><h3><%= @location.name %></h3></li>
-	<li><%= @location.address_split[0]%></li>
-	<li><%= @location.address_split[1] %></li>
-	<li><%= @location.address_split[2] %></li>
-	<li><%= @location.address_split[3] %></li>
-	<li><%= @location.address_split[4] %></li>
+<h1><%= @location.name %></h1>
+<ul>	
+	<% unless @location.address == nil %>
+		<li><%= @location.address_split[0]%></li>
+		<li><%= @location.address_split[1] %></li>
+		<li><%= @location.address_split[2] %></li>
+		<li><%= @location.address_split[3] %></li>
+		<li><%= @location.address_split[4] %></li>
+	<% else %>
+		<li>Latitude: <%= @location.latitude %></li>
+		<li>longitude: <%= @location.longitude %></li>
+	<% end %>
+	
+	<p></p>
+	<h3> Concerts </h3>
+
+	<% @concerts = Concert.where(location_id: @location[:id]) %>
+	<% unless @concerts == nil %>
+		<% @concerts.each_with_index do |c, index1| %>		
+		<ul>
+			<h5><%= c.name %></h5>
+			<li>Cover: <%= c.cover_to_money%></li>
+			<% c.time_slots.each_with_index do |ts, index2| %>
+				<p></p>
+				<li>Time Slot: #<%= index2+1 %></li>
+				<% @performer = Performer.find_by(id: ts[:performer_id]) %>
+				<li>Performer: <%= link_to @performer.name, @performer %> </li>
+				<li>Occurs at: <%= ts.occurs_at_to_s %></li>
+				<li>Duration: <%= ts.duration %></li>
+			<% end %>
+		<% end %>
+		</ul>
+	<% end %>
+
 </ul>

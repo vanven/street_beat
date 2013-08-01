@@ -19,6 +19,8 @@ class LocationsController < ApplicationController
 
   def show
   	@location = Location.find params[:id]
+
+    #@concerts_at_location = Concert.find_by(location_id: @location[:id])
   end
 
   def new
