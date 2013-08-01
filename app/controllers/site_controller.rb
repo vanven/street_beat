@@ -5,15 +5,19 @@ class SiteController < ApplicationController
     @concerts = Concert.all 
 
     @concertsjs = @concerts.map do |concert|
-      latitude = concert.location.latitude.to_s
-      longitude = concert.location.longitude.to_s
+      latitude = concert.location.latitude.to_s + "" 
+      longitude = concert.location.longitude.to_s + ""
+      concert.name = concert.name.gsub("'", "&#39;")
+      puts(concert.name)
       "{" +
-      "lat: #{latitude}," +
-      "lng: #{longitude}," +
+      "lat: '#{latitude}'," +
+      "lng: '#{longitude}'," +
       "title: '#{concert.name}'," +
       "id: #{concert.id}" +
       "}"
     end.join(",").html_safe
+
+    puts(@concertsjs);
 
   end
 

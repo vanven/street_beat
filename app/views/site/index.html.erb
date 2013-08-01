@@ -6,8 +6,10 @@
 		 <script src="http://cdn.leafletjs.com/leaflet-0.6.2/leaflet.js"></script>
 
     <!-- <script src="jquery-2.0.3.min.js"></script> -->
+
 </head>
 <body>
+
 	 <div id="map">
 
    <%= render partial: "mapSearchHeader" %>
@@ -121,12 +123,12 @@
       console.log(map.getBounds().contains(latlng));
 
 
-      var concerts = [<%= @concertsjs %>];
+      var concerts = [<%=h @concertsjs %>];
 
+      console.log(concerts);
 
       var len = concerts.length;
       for (var i = 0; i < len; i++) {
-        console.log(concerts[i].lat, concerts[i].lng);
         var marker = L.marker([concerts[i].lat, concerts[i].lng]).addTo(map);
         var title = "<a class='popdata' data-reveal-id='myModal' data-reveal-ajax='true' href='/concerts/" + concerts[i].id + "'>" + concerts[i].title + "</a>";
         var descripPopUp = L.popup().setContent(title);
@@ -149,18 +151,6 @@
 
   	} /* End setMap function */
   </script>
-
-  <% @concerts.each do |concerts| %>
-    <script>
-     for (var i = 0; i<concerts.length; i++){
-      var latPop = concerts[i].latitude;
-      var lngPop = concerts[i].longitude;
-      var title = concerts[i].title;
-      var eventMarker = L.marker([latPop, lngPop]).addTo(map);
-      var descripPopUp = L.popup().setContent(title);
-     }
-    </script>
-  <% end %>
 
 
   <div id="myModal" class="reveal-modal">
