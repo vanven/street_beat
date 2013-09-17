@@ -41,7 +41,8 @@
         })
     </script>
     <%= f.label :street_line1, value: "Street Line 1" %>
-    <input type="text" id="location_street_line1" name="location[street_line1]"/>
+    <%= f.text_field :street_line1 %>
+    <!-- <input type="text" id="location_street_line1" name="location[street_line1]"/>-->
   </p>
   <p>
     <%= f.label :street_line2 %>

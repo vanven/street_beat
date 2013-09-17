@@ -60,8 +60,6 @@ class LocationsController < ApplicationController
     @zip_code = location[:zip_code]
   
     if location[:city] == '' or location[:state] == '' and location[:zip_code] != ''
-      puts('*' * 20)
-      puts(location[:zip_code])
       @city = location[:zip_code].to_region(:city => true)
       @state = location[:zip_code].to_region(:state => true)
     else
