@@ -18,6 +18,7 @@ group :development, :test do
   gem 'jasmine'
   gem 'fabrication'
   gem 'ffaker'
+  gem 'dotenv-rails'
 end
 
 #geo - location gems 
