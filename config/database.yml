@@ -58,4 +58,6 @@ production:
   encoding: unicode
   database: street_beat
   pool: 5
+  username: joshuabook
+  password: ENV['PASS']
 
