@@ -56,8 +56,10 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: street_beat
+  database: d689lvqe3j8rrd
   pool: 5
-  username: joshuabook
-  password: ENV['PASS']
+  username: ahenhlevjtvnnn
+  password: ENV['PRODPASS']
+  host: ec2-107-20-165-44.compute-1.amazonaws.com
+
 
